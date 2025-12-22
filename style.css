@@ -1,7 +1,10 @@
 /* ============================
    Alexa Cooper Tattoo — BOTANICAL DARK THEME
-   Finished replacement style.css
-   (keeps your current layout; only updates look/feel)
+   style.css (CLEAN, click-only lightbox ready)
+   - Keeps your current layout
+   - Removes ALL hover-preview/lightbox behavior
+   - Portfolio thumbnails are bigger
+   - Click lightbox CSS included (requires js/lightbox.js)
    ============================ */
 
 :root{
@@ -68,7 +71,6 @@ a {
   color: inherit;
 }
 
-/* Wrapper spacing – vertical only, side padding will come from .page-wrap */
 main {
   padding: 96px 0 64px;
 }
@@ -95,7 +97,6 @@ h3 {
    Vines + page wrapper
    ============================ */
 
-/* Decorative vine images on left & right */
 .vine {
   position: fixed;
   top: 0;
@@ -103,8 +104,6 @@ h3 {
   width: auto;
   z-index: 0;
   pointer-events: none;
-
-  /* more “planty” without screaming */
   opacity: 0.62;
   filter: saturate(1.15) contrast(1.05);
 }
@@ -118,7 +117,6 @@ h3 {
   transform: scaleX(-1);
 }
 
-/* Wrap all page content so it sits above vines and doesn't touch them */
 .page-wrap {
   max-width: 1080px;
   margin: 0 auto;
@@ -127,7 +125,6 @@ h3 {
   z-index: 1;
 }
 
-/* On smaller screens, don't overdo the side padding */
 @media (max-width: 800px) {
   .page-wrap {
     padding-inline: 16px;
@@ -150,7 +147,6 @@ h3 {
 
   padding: 1rem 2rem;
 
-  /* floating, no bar */
   background: transparent;
   border-bottom: none;
   box-shadow: none;
@@ -237,7 +233,6 @@ h3 {
   color: var(--muted);
 }
 
-/* Hero image container */
 .hero-highlight {
   border-radius: 18px;
   overflow: hidden;
@@ -257,7 +252,6 @@ h3 {
   object-fit: cover;
 }
 
-/* Call-to-action button */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -331,7 +325,7 @@ h3 {
 }
 
 /* ============================
-   Portfolio preview
+   Portfolio preview (NO HOVER PREVIEW)
    ============================ */
 
 .section-header-row {
@@ -354,36 +348,29 @@ h3 {
 
 .portfolio-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.2rem;
 }
 
 .portfolio-item{
   border-radius: 18px;
   overflow: hidden;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,0.18);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
 }
 
 .portfolio-item img{
   width: 100%;
-  height: 260px;
+  height: 290px;          /* bigger thumbnails */
   object-fit: cover;
   display: block;
-  transition: transform 220ms ease;
-  transform-origin: center;
-}
-
-.portfolio-item:hover{
-  transform: translateY(-4px);
-}
-
-.portfolio-item:hover img{
-  transform: scale(1.12);
+  cursor: zoom-in;        /* click-to-enlarge */
 }
 
 .portfolio-item figcaption {
-  margin-top: 0.4rem;
-  font-size: 0.8rem;
+  padding: 10px 8px 12px;
+  font-size: 0.82rem;
   color: rgba(243,241,234,0.86);
   text-align: center;
 }
@@ -392,7 +379,6 @@ h3 {
 @media (max-width: 700px) {
   .hide-on-mobile { display: none !important; }
 }
-
 
 /* ============================
    Booking steps
@@ -517,7 +503,13 @@ h3 {
     width: 46px;
     height: 46px;
   }
+
+  /* Portfolio thumbnails a bit shorter on phones */
+  .portfolio-item img{
+    height: 240px;
+  }
 }
+
 /* ============================
    RC-NextShift credit (footer)
    ============================ */
@@ -537,3 +529,31 @@ h3 {
   display:block;
 }
 
+/* ============================
+   Click Lightbox (CSS only)
+   Requires js/lightbox.js to add/remove .open
+   ============================ */
+
+#lightboxOverlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 24px;
+}
+
+#lightboxOverlay.open{
+  display: flex;
+}
+
+#lightboxOverlay img{
+  max-width: min(95vw, 1200px);
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 20px 70px rgba(0,0,0,.65);
+}
