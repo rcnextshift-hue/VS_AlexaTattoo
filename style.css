@@ -570,6 +570,6 @@ h3 {
 }
 
 /* Extra breathing room so the headline never tucks under the logo */
-#home h1{
-  padding-top: 20px;
+#home {
+  scroll-margin-top: 75px;
 }
