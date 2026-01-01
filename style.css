@@ -569,15 +569,13 @@ h3 {
   scroll-margin-top: 75px;
 }
 
-/* Extra breathing room so the headline never tucks under the logo */
-#home {
-  scroll-margin-top: 75px;
-}
-
-#Portfolio {
-  scroll-margin-top: 75px;
-}
-
 #booking {
-  scroll-margin-top: 75px;
+  scroll-margin-top: 200px;
+}
+
+#contact{scroll-margin-top: 200px}
+
+/* Portfolio page: reduce the big gap under the header */
+body.portfolio-page main {
+  padding-top: 0px;
 }
